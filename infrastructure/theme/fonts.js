@@ -1,3 +1,4 @@
 export const fonts = {
-  main: "Roboto, sans-serif",
+  main: "Lato, sans-serif",
+  logo: "Sofia",
 };

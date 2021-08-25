@@ -6,6 +6,9 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
       font-family: ${({ theme }) => theme.fonts.main}
   }
+  body {
+    color: ${({ theme }) => theme.colors.font.default}
+  }
 `;
 
 export default GlobalStyle;

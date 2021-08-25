@@ -1,11 +1,14 @@
-import Head from "next/head";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
+import Dashboard from "./dashboard";
+import Enter from "./enter";
+
 const Home = () => {
-  return <Test>hi</Test>;
+  const currentUser = useSelector((state) => state.user.currentUser);
+  return <Container>{currentUser ? <Dashboard /> : <Enter />}</Container>;
 };
 
-const Test = styled.div`
-  background-color: ${(props) => props.theme.colors.font.default};
-`;
+const Container = styled.div``;
 
 export default Home;
