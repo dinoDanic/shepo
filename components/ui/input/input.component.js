@@ -16,6 +16,7 @@ const InputUi = styled.input`
   border: 1px solid ${(props) => props.theme.colors.body.grayer};
   color: ${(props) => props.theme.colors.ui.primary};
   box-shadow: ${(props) => props.theme.shadow.s1};
+  background-color: white;
   width: 100%;
   outline: none;
   transition: 0.2s ease;

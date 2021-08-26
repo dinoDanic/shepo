@@ -1,12 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = ({ size, children, ...otherProps }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+
+const Button = ({ icon, size, children, ...otherProps }) => {
   return (
     <ButtonUi size={size} {...otherProps}>
+      {icon && <Icon icon={icons[icon]} />}
       {children}
     </ButtonUi>
   );
+};
+
+const icons = {
+  faGoogle: faGoogle,
 };
 
 const defaultStyle = (theme) => `
@@ -16,11 +24,20 @@ const defaultStyle = (theme) => `
   box-shadow: ${theme.shadow.s1};
   padding: ${theme.space.padding.m};
   color: ${theme.colors.font.white};
+  width: 100%;
+  cursor: pointer;
+  box-shadow: ${theme.shadow.s1};
+  transition: 0.2s ease;
+  &:hover {
+    transform: scale(1.01);
+  }
+  &:focus {
+    transform: scale(0.99);
+  }
 `;
 
 const large = (theme) => `
-  color: blue,
-  font-size: 200px,
+  padding: ${theme.space.padding.xxl} ${theme.space.padding.giant};
 `;
 
 const sizes = {
@@ -31,5 +48,12 @@ const ButtonUi = styled.button`
   ${({ theme }) => defaultStyle(theme)};
   ${({ theme, size }) => sizes[size](theme)};
 `;
+const Icon = styled(FontAwesomeIcon)`
+  margin-right: ${(props) => props.theme.space.margin.m};
+`;
+
+Button.defaultProps = {
+  size: "large",
+};
 
 export default Button;

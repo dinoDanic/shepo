@@ -5,6 +5,8 @@ export const space = {
     l: "12px",
     xl: "16px",
     xxl: "20px",
+    xxxl: "24px",
+    giant: "32px",
   },
   margin: {
     s: "4px",
