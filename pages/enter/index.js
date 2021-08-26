@@ -70,6 +70,7 @@ const Container = styled.div`
   padding: 60px;
   overflow: hidden;
   height: 100vh;
+  width: 100%;
 `;
 const Logo = styled.div`
   font-family: ${({ theme }) => theme.fonts.logo};

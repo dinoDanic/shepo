@@ -2,15 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 import User from "../user/user.component";
-import Spacer from "../spacer/spacer";
+import Menu from "./menu/menu.component";
 
-const Menu = () => {
+const Sidebar = () => {
   return (
     <Container>
       <Logo>Shepo</Logo>
       <UserContainer>
         <User />
       </UserContainer>
+      <Menu />
     </Container>
   );
 };
@@ -30,4 +31,4 @@ const UserContainer = styled.div`
   margin: ${(props) => props.theme.space.margin.lg} 0;
 `;
 
-export default Menu;
+export default Sidebar;

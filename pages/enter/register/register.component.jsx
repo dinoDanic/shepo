@@ -10,17 +10,17 @@ const Register = () => {
   return (
     <Form>
       <Input text="email" placeholder="email" />
-      <Spacer variant="top" size="l" />
+      <Spacer variant="top" size="lg" />
       <Input text="user name" placeholder="user name" />
-      <Spacer variant="top" size="l" />
+      <Spacer variant="top" size="lg" />
       <Input text="password" placeholder="password" type="password" />
-      <Spacer variant="top" size="l" />
+      <Spacer variant="top" size="lg" />
       <Input
         text="repeat password"
         placeholder="repeat password"
         type="password"
       />
-      <Spacer variant="top" size="l" />
+      <Spacer variant="top" size="lg" />
       <Button size="large">Register</Button>
       <Hr />
       <Button icon="faGoogle">Register with Google</Button>

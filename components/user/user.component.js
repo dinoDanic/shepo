@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { auth } from "../../lib/firebase";
 
 import Avatar from "../ui/avatar/avatar.component";
 
@@ -9,7 +11,7 @@ const User = () => {
   return (
     <>
       {currentUser && (
-        <Container>
+        <Container onClick={() => signOut(auth)}>
           <Avatar imageURL={currentUser.photoURL} />
           <Name>{currentUser.username}</Name>
         </Container>

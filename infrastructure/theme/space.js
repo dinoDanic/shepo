@@ -16,7 +16,7 @@ export const space = {
   border: {
     s: "4px",
     m: "8px",
-    l: "12px",
+    lg: "12px",
     xl: "16px",
     xxl: "20px",
   },

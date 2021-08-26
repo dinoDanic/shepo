@@ -5,7 +5,8 @@ import { Provider } from "react-redux";
 import store from "../infrastructure/redux/store";
 import Auth from "../lib/auth";
 
-import Menu from "../components/menu/menu.component";
+import Sidebar from "../components/sidebar/sidebar.component";
+import Layout from "../infrastructure/layout/layout";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -13,18 +14,12 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Auth />
-        <Container>
-          <Menu />
+        <Layout>
           <Component {...pageProps} />
-        </Container>
+        </Layout>
       </ThemeProvider>
     </Provider>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  height: 100vh;
-`;
 
 export default MyApp;

@@ -12,9 +12,9 @@ const Login = () => {
     <Container>
       <Form>
         <Input text="email" placeholder="email" />
-        <Spacer variant="top" size="l" />
+        <Spacer variant="top" size="lg" />
         <Input text="password" placeholder="password" type="password" />
-        <Spacer variant="top" size="l" />
+        <Spacer variant="top" size="lg" />
         <Button size="large">Login</Button>
       </Form>
       <Hr />

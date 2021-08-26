@@ -11,8 +11,8 @@ const Input = ({ text, ...otherProps }) => {
 };
 const Container = styled.div``;
 const InputUi = styled.input`
-  border-radius: ${(props) => props.theme.space.border.l};
-  padding: ${(props) => props.theme.space.padding.xxl};
+  border-radius: ${(props) => props.theme.space.border.lg};
+  padding: ${(props) => props.theme.space.padding.lg};
   border: 1px solid ${(props) => props.theme.colors.body.grayer};
   color: ${(props) => props.theme.colors.ui.primary};
   box-shadow: ${(props) => props.theme.shadow.s1};

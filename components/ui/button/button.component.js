@@ -18,7 +18,7 @@ const icons = {
 };
 
 const defaultStyle = (theme) => `
-  border-radius: ${theme.space.border.l};
+  border-radius: ${theme.space.border.lg};
   border: 1px solid ${theme.colors.body.grayer};
   background-color: ${theme.colors.ui.primary};
   box-shadow: ${theme.shadow.s1};
@@ -37,7 +37,7 @@ const defaultStyle = (theme) => `
 `;
 
 const large = (theme) => `
-  padding: ${theme.space.padding.xxl} ${theme.space.padding.giant};
+  padding: ${theme.space.padding.lg} ${theme.space.padding.lg};
 `;
 
 const sizes = {

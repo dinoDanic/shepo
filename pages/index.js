@@ -6,7 +6,7 @@ import Link from "next/link";
 const Dashboard = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
 
-  return <Container>afds</Container>;
+  return <Container>index</Container>;
 };
 
 const Container = styled.div`
