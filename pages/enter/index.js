@@ -34,7 +34,7 @@ const Enter = () => {
           variants={variants}
           animate={isLogin ? "open" : "closed"}
           style={{ zIndex: isLogin ? "100" : "0" }}
-          transition={{ delay: isLogin && 0.15 }}
+          transition={{ delay: isLogin && 0.1 }}
         >
           <Login />
           <Question
@@ -50,7 +50,7 @@ const Enter = () => {
           animate={isRegister ? "open" : "closed"}
           initial={{ opacity: 0 }}
           style={{ zIndex: isRegister ? "100" : "0" }}
-          transition={{ delay: isRegister && 0.15 }}
+          transition={{ delay: isRegister && 0.1 }}
         >
           <Register />
           <Question

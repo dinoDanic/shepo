@@ -1,14 +1,20 @@
+import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
-import Dashboard from "./dashboard";
-import Enter from "./enter";
-
-const Home = () => {
+const Dashboard = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
-  return <Container>{currentUser ? <Dashboard /> : <Enter />}</Container>;
+
+  return <Container>afds</Container>;
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: ${(props) => props.theme.space.padding.xl};
+  margin-left: -${(props) => props.theme.space.margin.xl};
+  width: 100%;
+  border-radius: 20px 0 0 0;
+  background-color: ${(props) => props.theme.colors.body.gray};
+`;
 
-export default Home;
+export default Dashboard;

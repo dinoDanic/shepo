@@ -5,21 +5,28 @@ import Spacer from "../../../components/spacer/spacer";
 import Button from "../../../components/ui/button/button.component";
 import Hr from "../../../components/ui/hr/hr.components";
 import Input from "../../../components/ui/input/input.component";
+import { singInWithGoogle } from "../../../lib/firebase";
 
 const Login = () => {
   return (
-    <Form>
-      <Input text="email" placeholder="email" />
-      <Spacer variant="top" size="l" />
-      <Input text="password" placeholder="password" type="password" />
-      <Spacer variant="top" size="l" />
-      <Button size="large">Login</Button>
+    <Container>
+      <Form>
+        <Input text="email" placeholder="email" />
+        <Spacer variant="top" size="l" />
+        <Input text="password" placeholder="password" type="password" />
+        <Spacer variant="top" size="l" />
+        <Button size="large">Login</Button>
+      </Form>
       <Hr />
-      <Button icon="faGoogle">Login with Google</Button>
-    </Form>
+      <Button icon="faGoogle" onClick={() => singInWithGoogle()}>
+        Login with Google
+      </Button>
+    </Container>
   );
 };
-const Form = styled.form`
+const Container = styled.div`
   background: white;
 `;
+const Form = styled.form``;
+
 export default Login;
