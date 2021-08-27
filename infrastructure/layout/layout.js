@@ -1,25 +1,38 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { AnimatePresence, motion } from "framer-motion";
 
 import Sidebar from "../../components/sidebar/sidebar.component";
 
 const Layout = ({ children }) => {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const openUi = useSelector((state) => state.ui.openUi);
+  const variant = {
+    open: { scale: 0.95 },
+    close: { scale: 1 },
+  };
   return (
     <>
       {currentUser ? (
-        <Container>
-          <Sidebar />
-          <Content>{children}</Content>
-        </Container>
+        <AnimatePresence>
+          <Container
+            initial={{ scale: 1, opacity: 1 }}
+            variants={variant}
+            animate={openUi ? "open" : "close"}
+            transition={{ duration: 0.1 }}
+          >
+            <Sidebar />
+            <Content>{children}</Content>
+          </Container>
+        </AnimatePresence>
       ) : (
         <>{children}</>
       )}
     </>
   );
 };
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: flex;
   height: 100vh;
 `;

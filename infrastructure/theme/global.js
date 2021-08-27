@@ -8,7 +8,8 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
   }
   body {
-    color: ${({ theme }) => theme.colors.font.default}
+    color: ${({ theme }) => theme.colors.font.default};
+    overflow: hidden;
   }
 `;
 

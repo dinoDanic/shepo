@@ -8,7 +8,6 @@ import Register from "./register/register.component";
 
 const Enter = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
-  console.log(currentUser);
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
 

@@ -38,6 +38,8 @@ const defaultStyle = (theme) => `
   cursor: pointer;
   box-shadow: ${theme.shadow.s1};
   transition: 0.2s ease;
+  height: fit-content;
+  width: fit-content;
   &:hover {
     transform: scale(1.01);
   }
