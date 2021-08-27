@@ -2,7 +2,11 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompass, faCubes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCompass,
+  faCubes,
+  faUserFriends,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Menu = () => {
   return (
@@ -17,6 +21,12 @@ const Menu = () => {
         <Item>
           <Icon icon={faCubes} />
           <Text>Products</Text>
+        </Item>
+      </Link>
+      <Link href="/customers">
+        <Item>
+          <Icon icon={faUserFriends} />
+          <Text>Customers</Text>
         </Item>
       </Link>
     </Container>

@@ -12,6 +12,7 @@ import Product from "./product/product.component";
 import Spacer from "../../components/spacer/spacer";
 import BoxPop from "../../components/ui/box-pop/box-pop.component";
 import NewProduct from "../../components/new-product/new-product.component";
+import Bar from "../../components/bar/bar.component";
 
 const Products = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,13 +50,7 @@ const Products = () => {
           NEW PRODUCT
         </Button>
         <Spacer variant="bottom" size="lg" />
-        <ProductBar>
-          <Item>Product Details</Item>
-          <Item>Code</Item>
-          <Item>Price</Item>
-          <Item>Category</Item>
-          <Item></Item>
-        </ProductBar>
+        <Bar items={["product details", "code", "price", "category", ""]} />
         {products?.map((product) => (
           <Product key={product.id} product={product} />
         ))}
@@ -72,26 +67,5 @@ const Products = () => {
 };
 
 const Container = styled.div``;
-const ProductBar = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: ${(props) => props.theme.space.padding.lg};
-  padding-bottom: ${(props) => props.theme.space.padding.m};
-`;
-const Item = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  font-size: ${(props) => props.theme.size.font.xs};
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 500;
-  text-transform: uppercase;
-  &:first-child {
-    justify-content: flex-start;
-  }
-  &:last-child {
-    justify-content: flex-end;
-  }
-`;
 
 export default Products;

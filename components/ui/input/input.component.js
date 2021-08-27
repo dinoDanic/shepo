@@ -26,6 +26,7 @@ const InputUi = styled.input`
   }
   &:focus {
     transform: scale(1.01);
+    border: 1px solid ${(props) => props.theme.colors.body.darkGray};
   }
 `;
 const Text = styled.div`

@@ -29,14 +29,14 @@ const Content = styled.div`
   background-color: ${(props) => props.theme.colors.body.white};
   border-radius: ${(props) => props.theme.space.border.m};
   padding: ${(props) => props.theme.space.padding.xl};
-  border: 1px solid ${(props) => props.theme.colors.body.grayer};
+  border: 1px solid ${(props) => props.theme.colors.body.darkGray};
   margin-top: ${(props) => props.theme.space.margin.xl};
   width: 60%;
   position: absolute;
   z-index: 150;
 `;
 const Layer = styled.div`
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(3px);
   width: 100%;
   height: 100%;

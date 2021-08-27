@@ -5,11 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import {
   faBoxOpen,
-  faCommentDollar,
+  faUserPlus,
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
 import Spacer from "../../spacer/spacer";
-import { SP } from "next/dist/shared/lib/utils";
 
 const Button = ({ icon, size, children, ...otherProps }) => {
   return (
@@ -25,6 +24,7 @@ const icons = {
   faGoogle,
   faBoxOpen,
   faEllipsisH,
+  faUserPlus,
 };
 
 const defaultStyle = (theme) => `
