@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompass } from "@fortawesome/free-solid-svg-icons";
+import { faCompass, faCubes } from "@fortawesome/free-solid-svg-icons";
 
 const Menu = () => {
   return (
@@ -11,6 +11,12 @@ const Menu = () => {
         <Item>
           <Icon icon={faCompass} />
           <Text>Dashboard</Text>
+        </Item>
+      </Link>
+      <Link href="/products">
+        <Item>
+          <Icon icon={faCubes} />
+          <Text>Products</Text>
         </Item>
       </Link>
     </Container>

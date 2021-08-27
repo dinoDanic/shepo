@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 import Login from "./login/login.component";
 import Register from "./register/register.component";
 
 const Enter = () => {
-  const [formScale, setformScale] = useState(1);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  console.log(currentUser);
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
 
@@ -26,43 +28,38 @@ const Enter = () => {
   };
 
   return (
-    <Container>
-      <Logo>shepo</Logo>
-      {/* <Welcome>Welcome text</Welcome> */}
-      <Holder>
-        <FormContainer
-          variants={variants}
-          animate={isLogin ? "open" : "closed"}
-          style={{ zIndex: isLogin ? "100" : "0" }}
-          transition={{ delay: isLogin && 0.1 }}
-        >
-          <Login />
-          <Question
-            onHoverStart={() => setformScale(0.98)}
-            onHoverEnd={() => setformScale(1)}
-            onClick={() => toggleIs()}
-          >
-            No Accout? Register!
-          </Question>
-        </FormContainer>
-        <FormContainer
-          variants={regVariants}
-          animate={isRegister ? "open" : "closed"}
-          initial={{ opacity: 0 }}
-          style={{ zIndex: isRegister ? "100" : "0" }}
-          transition={{ delay: isRegister && 0.1 }}
-        >
-          <Register />
-          <Question
-            onHoverStart={() => setformScale(0.98)}
-            onHoverEnd={() => setformScale(1)}
-            onClick={() => toggleIs()}
-          >
-            Allready a member? Login!
-          </Question>
-        </FormContainer>
-      </Holder>
-    </Container>
+    <>
+      {!currentUser && (
+        <Container>
+          <Logo>shepo</Logo>
+          <Holder>
+            <FormContainer
+              variants={variants}
+              animate={isLogin ? "open" : "closed"}
+              style={{ zIndex: isLogin ? "100" : "0" }}
+              transition={{ delay: isLogin && 0.1 }}
+            >
+              <Login />
+              <Question onClick={() => toggleIs()}>
+                No Accout? Register!
+              </Question>
+            </FormContainer>
+            <FormContainer
+              variants={regVariants}
+              animate={isRegister ? "open" : "closed"}
+              initial={{ opacity: 0 }}
+              style={{ zIndex: isRegister ? "100" : "0" }}
+              transition={{ delay: isRegister && 0.1 }}
+            >
+              <Register />
+              <Question onClick={() => toggleIs()}>
+                Allready a member? Login!
+              </Question>
+            </FormContainer>
+          </Holder>
+        </Container>
+      )}
+    </>
   );
 };
 
