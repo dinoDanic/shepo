@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = ({ text, ...otherProps }) => {
+const Input = ({ text, variant, ...otherProps }) => {
+  // TO DO stal si na variant
   return (
     <Container>
       <Text>{text}</Text>

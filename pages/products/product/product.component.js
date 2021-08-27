@@ -1,47 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Link from "next/link";
 
 import styled, { css } from "styled-components";
 import Button from "../../../components/ui/button/button.component";
-import { useSubToProducts } from "../../../lib/hooks";
 
 import Label from "../../../components/ui/label/label.component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 const Product = ({ product }) => {
-  const { code, desc, name, price, imageURL, category } = product;
+  const { code, desc, name, price, imageURL, category, id } = product;
   return (
-    <Items>
-      <Item>
-        <Details>
-          {imageURL ? (
-            <Image alt="product image" src={imageURL} />
-          ) : (
-            <Icon icon={faImage} size="2x" />
-          )}
-          <Info>
-            <Name>{name}</Name>
-            <Desc>{desc}</Desc>
-          </Info>
-        </Details>
-      </Item>
-      <Item>
-        <Code>{code}</Code>
-      </Item>
-      <Item>
-        <Price>{price}</Price>
-      </Item>
-      <Item>
-        <Category>
-          <Label>{category}</Label>
-        </Category>
-      </Item>
-      <Item>
-        <Settings>
-          <Button icon="faEllipsisH" size="small" color="gray" />
-        </Settings>
-      </Item>
-    </Items>
+    <Link href={`/products/${id}`}>
+      <Items>
+        <Item>
+          <Details>
+            {imageURL ? (
+              <Image alt="product image" src={imageURL} />
+            ) : (
+              <Icon icon={faImage} size="2x" />
+            )}
+            <Info>
+              <Name>{name}</Name>
+              <Desc>{desc}</Desc>
+            </Info>
+          </Details>
+        </Item>
+        <Item>
+          <Code>{code}</Code>
+        </Item>
+        <Item>
+          <Price>{price}</Price>
+        </Item>
+        <Item>
+          <Category>
+            <Label>{category}</Label>
+          </Category>
+        </Item>
+        <Item>
+          <Settings>
+            <Button icon="faEllipsisH" size="small" color="gray" />
+          </Settings>
+        </Item>
+      </Items>
+    </Link>
   );
 };
 const middle = css`

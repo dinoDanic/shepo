@@ -12,6 +12,7 @@ import Button from "../../components/ui/button/button.component";
 import BoxPop from "../../components/ui/box-pop/box-pop.component";
 import Bar from "../../components/bar/bar.component";
 import NewCustomer from "../../components/new-customer/new-cusomter.component";
+import Customer from "./customer/customer.component";
 
 const Customers = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,10 @@ const Customers = () => {
           NEW CUSTOMER
         </Button>
         <Spacer variant="bottom" size="lg" />
-        <Bar items={["name", "adress", "contact"]} />
+        <Bar items={["name", "adress", "contact", "notes"]} />
+        {customers?.map((customer) => (
+          <Customer key={customer.id} customer={customer} />
+        ))}
       </Container>
       <AnimatePresence>
         {isOpen && (
