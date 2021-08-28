@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import toast from "react-hot-toast";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import { editProduct } from "../../../lib/firebase.fn";
-import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 import Title from "../../../components/typo/title.component";
 import Input from "../../../components/ui/input/input.component";
@@ -15,7 +16,7 @@ import Delete from "../../../components/ui/delete/delete.component";
 
 export async function getServerSideProps({ query }) {
   const { id } = query;
-  const docRef = doc(db, "products", id);
+  const docRef = doc(db, `users/VWpULSlZUUhcFDuEEYENsarE44a2/products`, id);
   const docSnap = await getDoc(docRef);
   const postData = docSnap.data();
   return {
@@ -28,6 +29,7 @@ var formatter = new Intl.NumberFormat("de-DE", {
 });
 
 const ProductDetails = ({ postData }) => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   const { code, desc, id, name, price, weight, category } = postData;
   const [isDelete, setIsDelete] = useState(false);
   const [editCategory, setEditCategory] = useState(false);
@@ -77,7 +79,7 @@ const ProductDetails = ({ postData }) => {
       category: newCategory,
     };
     try {
-      editProduct(newData, id);
+      editProduct(newData, currentUser.id, id);
     } catch (err) {
       console.log(err);
     } finally {

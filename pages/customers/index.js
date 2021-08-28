@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { onSnapshot, collection } from "@firebase/firestore";
 import { db } from "../../lib/firebase";
 import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
 
 import Title from "../../components/typo/title.component";
 import Spacer from "../../components/spacer/spacer";
@@ -13,6 +14,7 @@ import NewCustomer from "../../components/new-customer/new-cusomter.component";
 import Customer from "./customer/customer.component";
 
 const Customers = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   const [isOpen, setIsOpen] = useState(false);
   const [customers, setCustomers] = useState([]);
 
@@ -21,13 +23,16 @@ const Customers = () => {
   }
 
   useEffect(() => {
-    onSnapshot(collection(db, "customers"), (customers) => {
-      let list = [];
-      customers.forEach((customer) => {
-        list.push(customer.data());
-      });
-      setCustomers(list);
-    });
+    onSnapshot(
+      collection(db, `users/${currentUser.id}/customers`),
+      (customers) => {
+        let list = [];
+        customers.forEach((customer) => {
+          list.push(customer.data());
+        });
+        setCustomers(list);
+      }
+    );
   }, []);
 
   return (

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AnimatePresence } from "framer-motion";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../lib/firebase";
+import { useSelector } from "react-redux";
 
 import Title from "../../components/typo/title.component";
 import Button from "../../components/ui/button/button.component";
@@ -13,6 +14,7 @@ import NewProduct from "../../components/new-product/new-product.component";
 import Bar from "../../components/bar/bar.component";
 
 const Products = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   const [isOpen, setIsOpen] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -21,13 +23,16 @@ const Products = () => {
   }
 
   useEffect(() => {
-    onSnapshot(collection(db, "products"), (products) => {
-      let list = [];
-      products.forEach((product) => {
-        list.push(product.data());
-      });
-      setProducts(list);
-    });
+    onSnapshot(
+      collection(db, `users/${currentUser.id}/products`),
+      (products) => {
+        let list = [];
+        products.forEach((product) => {
+          list.push(product.data());
+        });
+        setProducts(list);
+      }
+    );
   }, []);
 
   return (

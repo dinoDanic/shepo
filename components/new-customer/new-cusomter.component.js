@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleUi } from "../../infrastructure/redux/ui/ui.actions";
 
 import { createNewCustomer } from "../../lib/firebase.fn";
@@ -11,6 +11,7 @@ import Input from "../ui/input/input.component";
 import TextArea from "../ui/text-area/text-area.component";
 
 const NewCustomer = ({ setIsOpen }) => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [number, setNumber] = useState(null);
@@ -35,7 +36,7 @@ const NewCustomer = ({ setIsOpen }) => {
       notes,
     };
     try {
-      createNewCustomer(customerData);
+      createNewCustomer(customerData, currentUser.id);
       setIsOpen(false);
       dispatch(toggleUi(false));
     } catch (err) {

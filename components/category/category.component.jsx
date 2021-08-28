@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { db } from "../../lib/firebase";
+import { useSelector } from "react-redux";
 import { doc, onSnapshot } from "firebase/firestore";
 
 import { createNewCategory } from "../../lib/firebase.fn";
@@ -9,23 +10,27 @@ import Button from "../ui/button/button.component";
 import Input from "../ui/input/input.component";
 
 const Category = ({ setCategory, simple }) => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   const [categorys, setCategorys] = useState([]);
   const [isNewCat, setIsNewCat] = useState(false);
   const [newCategory, setNewCategory] = useState("");
   useEffect(() => {
-    onSnapshot(doc(db, "categorys", "categorys"), (doc) => {
-      if (doc.exists) {
-        if (doc.data() !== undefined) {
-          setCategorys(doc.data().categorys);
+    onSnapshot(
+      doc(db, `users/${currentUser.id}/categorys`, "categorys"),
+      (doc) => {
+        if (doc.exists) {
+          if (doc.data() !== undefined) {
+            setCategorys(doc.data().categorys);
+          }
         }
       }
-    });
+    );
   }, []);
 
   const submitForm = async (e) => {
     e.preventDefault();
     categorys.push(newCategory);
-    await createNewCategory(categorys);
+    await createNewCategory(categorys, currentUser.id);
     setIsNewCat(false);
   };
 

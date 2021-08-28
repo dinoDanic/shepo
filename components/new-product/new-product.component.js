@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { createNewProduct } from "../../lib/firebase.fn";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleUi } from "../../infrastructure/redux/ui/ui.actions";
 
 import Spacer from "../spacer/spacer";
@@ -12,6 +12,7 @@ import Category from "../category/category.component";
 import Button from "../ui/button/button.component";
 
 const NewProduct = ({ setIsOpen }) => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
@@ -34,7 +35,7 @@ const NewProduct = ({ setIsOpen }) => {
       category,
     };
     try {
-      createNewProduct(productData);
+      createNewProduct(productData, currentUser.id);
       setIsOpen(false);
       dispatch(toggleUi(false));
     } catch (err) {

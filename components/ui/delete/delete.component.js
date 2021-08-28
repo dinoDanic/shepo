@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct } from "../../../lib/firebase.fn";
 import { toggleUi } from "../../../infrastructure/redux/ui/ui.actions";
 import { useRouter } from "next/router";
@@ -9,10 +9,11 @@ import Title from "../../typo/title.component";
 import Button from "../button/button.component";
 
 const Delete = ({ text, fn, extra, setLayer }) => {
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const router = useRouter();
   const handleFn = () => {
-    fns[fn](extra);
+    fns[fn](extra, currentUser.id);
     router.push("/products");
     dispatch(toggleUi(false));
   };
