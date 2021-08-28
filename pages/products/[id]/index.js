@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import Title from "../../../components/typo/title.component";
 import Input from "../../../components/ui/input/input.component";
 import Button from "../../../components/ui/button/button.component";
-import theme from "../../../infrastructure/theme";
+import Category from "../../../components/category/category.component";
 
 export async function getServerSideProps({ query }) {
   const { id } = query;
@@ -25,12 +25,14 @@ var formatter = new Intl.NumberFormat("de-DE", {
 });
 
 const ProductDetails = ({ postData }) => {
-  const { code, desc, id, name, price, weight } = postData;
+  const { code, desc, id, name, price, weight, category } = postData;
+  const [editCategory, setEditCategory] = useState(false);
   const [newName, setNewName] = useState(name);
   const [newDesc, setNewDesc] = useState(desc);
   const [newCode, setNewCode] = useState(code);
   const [newPrice, setNewPrice] = useState(price);
   const [newWeight, setNewWeight] = useState(weight);
+  const [newCategory, setNewCategory] = useState(category);
   const [change, setChange] = useState(false);
 
   useEffect(() => {
@@ -39,7 +41,8 @@ const ProductDetails = ({ postData }) => {
       newDesc !== desc ||
       newCode !== code ||
       newPrice !== price ||
-      newWeight !== weight
+      newWeight !== weight ||
+      newCategory !== category
     ) {
       setChange(true);
     } else {
@@ -51,6 +54,8 @@ const ProductDetails = ({ postData }) => {
     newCode,
     newPrice,
     newWeight,
+    newCategory,
+    category,
     name,
     desc,
     code,
@@ -65,6 +70,7 @@ const ProductDetails = ({ postData }) => {
       name: newName,
       price: newPrice,
       weight: newWeight,
+      category: newCategory,
     };
     try {
       editProduct(newData, id);
@@ -75,6 +81,7 @@ const ProductDetails = ({ postData }) => {
         style: { background: "#33A744", color: "white" },
       });
       setChange(false);
+      setEditCategory(false);
     }
   };
 
@@ -126,6 +133,18 @@ const ProductDetails = ({ postData }) => {
             onChange={(e) => setNewDesc(e.target.value)}
           />
         </Row>
+        <Row>
+          <InputName>Category</InputName>
+          <CatagoryContainer>
+            {editCategory ? (
+              <Category simple setCategory={setNewCategory} />
+            ) : (
+              <CatOption onClick={() => setEditCategory(true)}>
+                {newCategory}
+              </CatOption>
+            )}
+          </CatagoryContainer>
+        </Row>
         <ButtonContainer>
           {change ? (
             <Button onClick={handleSaveChanges}>Save Changes</Button>
@@ -143,6 +162,10 @@ const Container = styled.div`
   padding: 20px;
   border-radius: 10px;
 `;
+const CatOption = styled.div`
+  cursor: pointer;
+  padding: ${(props) => props.theme.space.padding.m};
+`;
 const ButtonContainer = styled.div`
   position: absolute;
   bottom: ${(props) => props.theme.space.margin.xl};
@@ -157,5 +180,5 @@ const Row = styled.div`
 const Id = styled.div`
   padding: ${(props) => props.theme.space.padding.m};
 `;
-
+const CatagoryContainer = styled.div``;
 export default ProductDetails;

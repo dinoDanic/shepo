@@ -7,6 +7,7 @@ import {
   faBoxOpen,
   faUserPlus,
   faEllipsisH,
+  faPlusSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import Spacer from "../../spacer/spacer";
 
@@ -25,6 +26,7 @@ const icons = {
   faBoxOpen,
   faEllipsisH,
   faUserPlus,
+  faPlusSquare,
 };
 
 const defaultStyle = (theme) => `

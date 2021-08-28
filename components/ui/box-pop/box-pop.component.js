@@ -31,7 +31,7 @@ const Content = styled.div`
   padding: ${(props) => props.theme.space.padding.xl};
   border: 1px solid ${(props) => props.theme.colors.body.darkGray};
   margin-top: ${(props) => props.theme.space.margin.xl};
-  width: 60%;
+  width: 80%;
   position: absolute;
   z-index: 150;
 `;

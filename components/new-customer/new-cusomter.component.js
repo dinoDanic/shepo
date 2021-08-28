@@ -89,6 +89,9 @@ const Header = styled.div`
 `;
 const Form = styled.div`
   display: flex;
+  input {
+    margin-bottom: ${(props) => props.theme.space.margin.m};
+  }
 `;
 const Row = styled.div`
   flex: 1;
