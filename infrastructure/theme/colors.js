@@ -7,6 +7,7 @@ export const colors = {
   },
   ui: {
     primary: "#1D9FD7",
+    success: "#43f35e",
   },
   font: {
     default: "#333",

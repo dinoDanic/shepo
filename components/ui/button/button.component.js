@@ -71,6 +71,12 @@ const gray = (theme) => `
   }
 `;
 
+const forbidden = (theme) => `
+background-color: ${theme.colors.body.grayer}; 
+cursor: not-allowed;
+color: rgba(0,0,0,0.5);
+`;
+
 const sizes = {
   large,
   medium,
@@ -79,6 +85,7 @@ const sizes = {
 const colors = {
   primary,
   gray,
+  forbidden,
 };
 const ButtonUi = styled.button`
   ${({ theme }) => defaultStyle(theme)};
