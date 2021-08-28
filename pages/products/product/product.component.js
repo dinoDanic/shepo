@@ -37,11 +37,6 @@ const Product = ({ product }) => {
             <Label>{category}</Label>
           </Category>
         </Item>
-        <Item>
-          <Settings>
-            <Button icon="faEllipsisH" size="small" color="gray" />
-          </Settings>
-        </Item>
       </Items>
     </Link>
   );
@@ -81,13 +76,18 @@ const Items = styled.div`
   border-radius: ${(props) => props.theme.space.border.m};
   margin-bottom: ${(props) => props.theme.space.margin.m};
   display: flex;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+  box-shadow: ${(props) => props.theme.shadow.s1};
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: ${(props) => props.theme.shadow.s2};
+  }
 `;
 const Details = styled.div`
   ${middle}
 `;
 const Image = styled.img`
-  width: 40px;
-  height: 40px;
   object-fit: cover;
   border-radius: ${(props) => props.theme.space.border.m};
   margin-right: ${(props) => props.theme.space.margin.lg};

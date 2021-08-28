@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { onSnapshot, collection } from "@firebase/firestore";
 import { db } from "../../lib/firebase";
-import { useDispatch } from "react-redux";
-import { toggleUi } from "../../infrastructure/redux/ui/ui.actions";
 import { AnimatePresence } from "framer-motion";
 
 import Title from "../../components/typo/title.component";
@@ -17,19 +15,10 @@ import Customer from "./customer/customer.component";
 const Customers = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [customers, setCustomers] = useState([]);
-  const dispatch = useDispatch();
 
   function createUser() {
-    dispatch(toggleUi(!isOpen));
     setIsOpen(!isOpen);
   }
-  useEffect(() => {
-    if (isOpen) {
-      dispatch(toggleUi(true));
-    } else {
-      dispatch(toggleUi(false));
-    }
-  }, [isOpen]);
 
   useEffect(() => {
     onSnapshot(collection(db, "customers"), (customers) => {
@@ -57,7 +46,7 @@ const Customers = () => {
       </Container>
       <AnimatePresence>
         {isOpen && (
-          <BoxPop setLayer={setIsOpen}>
+          <BoxPop layer={isOpen} setLayer={setIsOpen}>
             <NewCustomer setIsOpen={setIsOpen} />
           </BoxPop>
         )}

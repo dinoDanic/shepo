@@ -9,6 +9,9 @@ import Title from "../../../components/typo/title.component";
 import Input from "../../../components/ui/input/input.component";
 import Button from "../../../components/ui/button/button.component";
 import Category from "../../../components/category/category.component";
+import Spacer from "../../../components/spacer/spacer";
+import BoxPop from "../../../components/ui/box-pop/box-pop.component";
+import Delete from "../../../components/ui/delete/delete.component";
 
 export async function getServerSideProps({ query }) {
   const { id } = query;
@@ -26,6 +29,7 @@ var formatter = new Intl.NumberFormat("de-DE", {
 
 const ProductDetails = ({ postData }) => {
   const { code, desc, id, name, price, weight, category } = postData;
+  const [isDelete, setIsDelete] = useState(false);
   const [editCategory, setEditCategory] = useState(false);
   const [newName, setNewName] = useState(name);
   const [newDesc, setNewDesc] = useState(desc);
@@ -78,11 +82,15 @@ const ProductDetails = ({ postData }) => {
       console.log(err);
     } finally {
       toast(`post "${newName}" saved!`, {
-        style: { background: "#33A744", color: "white" },
+        style: { background: "#05ce91", color: "white" },
       });
       setChange(false);
       setEditCategory(false);
     }
+  };
+
+  const handleDelete = () => {
+    setIsDelete(true);
   };
 
   return (
@@ -140,19 +148,31 @@ const ProductDetails = ({ postData }) => {
               <Category simple setCategory={setNewCategory} />
             ) : (
               <CatOption onClick={() => setEditCategory(true)}>
-                {newCategory}
+                {newCategory ? newCategory : "No category"}
               </CatOption>
             )}
           </CatagoryContainer>
         </Row>
-        <ButtonContainer>
-          {change ? (
-            <Button onClick={handleSaveChanges}>Save Changes</Button>
-          ) : (
-            <Button color="forbidden">Save Changes</Button>
-          )}
-        </ButtonContainer>
       </Container>
+      <ButtonContainer>
+        <Button color="danger" icon="faTrashAlt" onClick={handleDelete} />
+        <Spacer variant="right" size="s" />
+        {change ? (
+          <Button icon="faCheck" onClick={handleSaveChanges} />
+        ) : (
+          <Button icon="faCheck" color="forbidden" />
+        )}
+      </ButtonContainer>
+      {isDelete && (
+        <BoxPop variant="alert" layer={isDelete} setLayer={setIsDelete}>
+          <Delete
+            setLayer={setIsDelete}
+            text={name}
+            extra={id}
+            fn="deleteProduct"
+          />
+        </BoxPop>
+      )}
     </>
   );
 };
@@ -167,8 +187,10 @@ const CatOption = styled.div`
   padding: ${(props) => props.theme.space.padding.m};
 `;
 const ButtonContainer = styled.div`
-  position: absolute;
   bottom: ${(props) => props.theme.space.margin.xl};
+  display: flex;
+  justify-content: flex-end;
+  margin-top: ${(props) => props.theme.space.margin.lg};
 `;
 const InputName = styled.div`
   min-width: 150px;
@@ -181,4 +203,5 @@ const Id = styled.div`
   padding: ${(props) => props.theme.space.padding.m};
 `;
 const CatagoryContainer = styled.div``;
+
 export default ProductDetails;

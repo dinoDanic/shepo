@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { AnimatePresence } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { toggleUi } from "../../infrastructure/redux/ui/ui.actions";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 
@@ -17,19 +15,10 @@ import Bar from "../../components/bar/bar.component";
 const Products = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [products, setProducts] = useState([]);
-  const dispatch = useDispatch();
 
   function createProduct() {
-    dispatch(toggleUi(!isOpen));
     setIsOpen(!isOpen);
   }
-  useEffect(() => {
-    if (isOpen) {
-      dispatch(toggleUi(true));
-    } else {
-      dispatch(toggleUi(false));
-    }
-  }, [isOpen]);
 
   useEffect(() => {
     onSnapshot(collection(db, "products"), (products) => {
@@ -50,14 +39,14 @@ const Products = () => {
           NEW PRODUCT
         </Button>
         <Spacer variant="bottom" size="lg" />
-        <Bar items={["product details", "code", "price", "category", ""]} />
+        <Bar items={["product details", "code", "price", "category"]} />
         {products?.map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </Container>
       <AnimatePresence>
         {isOpen && (
-          <BoxPop setLayer={setIsOpen}>
+          <BoxPop layer={isOpen} setLayer={setIsOpen}>
             <NewProduct setIsOpen={setIsOpen} />
           </BoxPop>
         )}

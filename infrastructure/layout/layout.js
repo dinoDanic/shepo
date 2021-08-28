@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
             initial={{ scale: 1, opacity: 1 }}
             variants={variant}
             animate={openUi ? "open" : "close"}
-            transition={{ duration: 0.1 }}
+            transition={{ duration: 0.2 }}
           >
             <Sidebar />
             <Content>{children}</Content>

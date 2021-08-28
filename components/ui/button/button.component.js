@@ -8,6 +8,8 @@ import {
   faUserPlus,
   faEllipsisH,
   faPlusSquare,
+  faTrashAlt,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import Spacer from "../../spacer/spacer";
 
@@ -27,6 +29,8 @@ const icons = {
   faEllipsisH,
   faUserPlus,
   faPlusSquare,
+  faTrashAlt,
+  faCheck,
 };
 
 const defaultStyle = (theme) => `
@@ -63,6 +67,7 @@ const medium = (theme) => `
   border-radius: ${theme.space.border.m};
 `;
 const primary = (theme) => `  background-color: ${theme.colors.ui.primary};`;
+const danger = (theme) => `  background-color: ${theme.colors.ui.danger};`;
 
 const gray = (theme) => `
   background-color: ${theme.colors.body.grayer}; 
@@ -88,6 +93,7 @@ const colors = {
   primary,
   gray,
   forbidden,
+  danger,
 };
 const ButtonUi = styled.button`
   ${({ theme }) => defaultStyle(theme)};

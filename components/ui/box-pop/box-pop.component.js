@@ -1,19 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
+import { toggleUi } from "../../../infrastructure/redux/ui/ui.actions";
 
-const BoxPop = ({ children, setLayer }) => {
+const BoxPop = ({ children, setLayer, layer, variant }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (layer) {
+      dispatch(toggleUi(true));
+    } else {
+      dispatch(toggleUi(false));
+    }
+  }, [layer, dispatch, setLayer]);
+
+  const handleLayer = () => {
+    setLayer(false);
+    dispatch(toggleUi(false));
+  };
+
   return (
     <Container
-      initial={{ scale: 1.02, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 1.02, opacity: 0 }}
-      transition={{ duration: 0.15 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
     >
-      <Content>{children}</Content>
-      <Layer onClick={() => setLayer(false)} />
+      <Content variant={variant}>{children}</Content>
+      <Layer onClick={() => handleLayer()} />
     </Container>
   );
+};
+
+const defaultStyleContent = (theme) => `
+  background-color: ${theme.colors.body.white};
+  border-radius: ${theme.space.border.m};
+  padding: ${theme.space.padding.xl};
+  border: 1px solid ${theme.colors.body.grayer};
+  margin-top: ${theme.space.margin.xl};
+  box-shadow: ${theme.shadow.s4};
+  width: 80%;
+  position: absolute;
+  z-index: 150;
+`;
+
+const alert = (theme) => `
+  width: fit-content;
+`;
+
+const variants = {
+  alert,
 };
 
 const Container = styled(motion.div)`
@@ -26,18 +62,11 @@ const Container = styled(motion.div)`
   justify-content: center;
 `;
 const Content = styled.div`
-  background-color: ${(props) => props.theme.colors.body.white};
-  border-radius: ${(props) => props.theme.space.border.m};
-  padding: ${(props) => props.theme.space.padding.xl};
-  border: 1px solid ${(props) => props.theme.colors.body.darkGray};
-  margin-top: ${(props) => props.theme.space.margin.xl};
-  width: 80%;
-  position: absolute;
-  z-index: 150;
+  ${({ theme }) => defaultStyleContent(theme)}
+  ${({ theme, variant }) => variant && variants[variant](theme)}
 `;
 const Layer = styled.div`
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
   height: 100%;
   z-index: 100;

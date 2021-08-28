@@ -6,8 +6,10 @@ export const colors = {
     darkGray: "#cacaca",
   },
   ui: {
-    primary: "#1D9FD7",
-    success: "#33A744",
+    primary: "#34b5e4",
+    success: "#05ce91",
+    danger: "rgb(226, 68, 92)",
+    warning: "#fbcb00",
   },
   font: {
     default: "#333",

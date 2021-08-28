@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { toggleUi } from "../../infrastructure/redux/ui/ui.actions";
 
 import { createNewCustomer } from "../../lib/firebase.fn";
 
@@ -9,6 +11,7 @@ import Input from "../ui/input/input.component";
 import TextArea from "../ui/text-area/text-area.component";
 
 const NewCustomer = ({ setIsOpen }) => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [number, setNumber] = useState(null);
   const [street, setStreet] = useState("");
@@ -34,6 +37,7 @@ const NewCustomer = ({ setIsOpen }) => {
     try {
       createNewCustomer(customerData);
       setIsOpen(false);
+      dispatch(toggleUi(false));
     } catch (err) {
       console.log(err);
     }

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { createNewProduct } from "../../lib/firebase.fn";
+import { useDispatch } from "react-redux";
+import { toggleUi } from "../../infrastructure/redux/ui/ui.actions";
 
 import Spacer from "../spacer/spacer";
 import Title from "../typo/title.component";
@@ -9,10 +11,8 @@ import TextArea from "../ui/text-area/text-area.component";
 import Category from "../category/category.component";
 import Button from "../ui/button/button.component";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
-
-const NewProduct = ({ imageURL, setIsOpen }) => {
+const NewProduct = ({ setIsOpen }) => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [desc, setDesc] = useState("");
@@ -36,6 +36,7 @@ const NewProduct = ({ imageURL, setIsOpen }) => {
     try {
       createNewProduct(productData);
       setIsOpen(false);
+      dispatch(toggleUi(false));
     } catch (err) {
       console.log(err);
     }
