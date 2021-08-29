@@ -12,18 +12,22 @@ const Login = () => {
       <Form>
         <Input text="email" placeholder="email" />
         <Input text="password" placeholder="password" type="password" />
-        <Button size="large">Login</Button>
+        <Button long size="large">
+          Login
+        </Button>
       </Form>
       <Hr />
-      <Button icon="faGoogle" onClick={() => singInWithGoogle()}>
+      <Button icon="faGoogle" long onClick={() => singInWithGoogle()}>
         Login with Google
       </Button>
     </Container>
   );
 };
-const Container = styled.div`
-  background: white;
+const Container = styled.div``;
+const Form = styled.form`
+  input {
+    margin-bottom: ${(props) => props.theme.space.margin.lg};
+  }
 `;
-const Form = styled.form``;
 
 export default Login;

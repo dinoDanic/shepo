@@ -13,9 +13,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Spacer from "../../spacer/spacer";
 
-const Button = ({ icon, size, children, ...otherProps }) => {
+const Button = ({ icon, size, children, long, ...otherProps }) => {
   return (
-    <ButtonUi size={size} {...otherProps}>
+    <ButtonUi long={long} size={size} {...otherProps}>
       {icon && <Icon icon={icons[icon]} />}
       {icon && children && <Spacer variant="right" size="s" />}
       {children}
@@ -84,6 +84,12 @@ cursor: not-allowed;
 color: rgba(0,0,0,0.5);
 `;
 
+const widthStyle = () => `
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 const sizes = {
   large,
   medium,
@@ -95,10 +101,12 @@ const colors = {
   forbidden,
   danger,
 };
+
 const ButtonUi = styled.button`
   ${({ theme }) => defaultStyle(theme)};
   ${({ theme, size }) => sizes[size](theme)};
   ${({ theme, color }) => colors[color](theme)};
+  ${({ long }) => long && widthStyle()};
 `;
 const Icon = styled(FontAwesomeIcon)``;
 

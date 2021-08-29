@@ -10,26 +10,28 @@ const Register = () => {
   return (
     <Form>
       <Input text="email" placeholder="email" />
-      <Spacer variant="top" size="lg" />
       <Input text="user name" placeholder="user name" />
-      <Spacer variant="top" size="lg" />
       <Input text="password" placeholder="password" type="password" />
-      <Spacer variant="top" size="lg" />
       <Input
         text="repeat password"
         placeholder="repeat password"
         type="password"
       />
-      <Spacer variant="top" size="lg" />
-      <Button size="large">Register</Button>
+      <Button long size="large">
+        Register
+      </Button>
       <Hr />
-      <Button icon="faGoogle">Register with Google</Button>
+      <Button long icon="faGoogle">
+        Register with Google
+      </Button>
     </Form>
   );
 };
 
 const Form = styled.form`
-  background: white;
+  input {
+    margin-bottom: ${(props) => props.theme.space.margin.lg};
+  }
 `;
 
 export default Register;
